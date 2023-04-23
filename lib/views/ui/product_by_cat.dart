@@ -3,6 +3,7 @@ import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:shopping_app_with_provider_and_hive/models/sneaker_model.dart';
 import 'package:shopping_app_with_provider_and_hive/services/helper.dart';
 import 'package:shopping_app_with_provider_and_hive/views/shared/app_style.dart';
+import 'package:shopping_app_with_provider_and_hive/views/shared/customer_spacer.dart';
 import 'package:shopping_app_with_provider_and_hive/views/shared/latest_shoes.dart';
 import 'package:shopping_app_with_provider_and_hive/views/shared/product_card.dart';
 import 'package:shopping_app_with_provider_and_hive/views/shared/stagger_tile.dart';
@@ -151,9 +152,16 @@ class _ProductByCatState extends State<ProductByCat>
               ),
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height*0.7,
+              height: MediaQuery.of(context).size.height * 0.7,
               child: Column(
                 children: [
+                  const CustomerSpacer(),
+                  Text("Filter",
+                      style: appStyle(40, Colors.black, FontWeight.bold)),
+                  const CustomerSpacer(),
+                  Text("Gender",
+                      style: appStyle(20, Colors.black, FontWeight.bold)),
+                  const SizedBox(height: 20),
 
                 ],
               ),
