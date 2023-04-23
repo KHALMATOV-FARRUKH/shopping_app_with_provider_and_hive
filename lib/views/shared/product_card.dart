@@ -74,7 +74,7 @@ class _ProductCardState extends State<ProductCard> {
                     Text(
                       widget.name,
                       style: appStyleWithHt(
-                          34, Colors.black, FontWeight.bold, 1.1),
+                          30, Colors.black, FontWeight.bold, 1.1),
                     ),
                     Text(
                       widget.category,
@@ -87,14 +87,14 @@ class _ProductCardState extends State<ProductCard> {
               Padding(
                 padding: const EdgeInsets.only(
                   left: 8,
-                  right: 8,
+                  right: 5,
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       widget.price,
-                      style: appStyle(30, Colors.black, FontWeight.w600),
+                      style: appStyle(26, Colors.black, FontWeight.w600),
                     ),
                     Row(
                       children: [

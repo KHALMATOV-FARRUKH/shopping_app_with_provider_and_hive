@@ -7,6 +7,7 @@ import 'package:shopping_app_with_provider_and_hive/views/shared/bottom_nav_bar.
 import 'package:shopping_app_with_provider_and_hive/views/shared/bottom_nav_widget.dart';
 import 'package:shopping_app_with_provider_and_hive/views/ui/cart_page.dart';
 import 'package:shopping_app_with_provider_and_hive/views/ui/home_page.dart';
+import 'package:shopping_app_with_provider_and_hive/views/ui/product_by_cat.dart';
 import 'package:shopping_app_with_provider_and_hive/views/ui/profile_page.dart';
 import 'package:shopping_app_with_provider_and_hive/views/ui/search_page.dart';
 
@@ -16,7 +17,7 @@ class MainScreen extends StatelessWidget {
   List<Widget> pageList = const [
     HomePage(),
     SearchPage(),
-    HomePage(),
+    ProductByCat(),
     CartPage(),
     ProfilePage()
   ];
@@ -26,7 +27,7 @@ class MainScreen extends StatelessWidget {
     return Consumer<MainScreenNotifier>(
       builder: (context, mainScreenNotifier, child) {
         return Scaffold(
-
+          backgroundColor: const Color(0xFFe2e2e2),
           body: pageList[mainScreenNotifier.pageIndex],
           bottomNavigationBar: const BottomNavBar(),
         );
