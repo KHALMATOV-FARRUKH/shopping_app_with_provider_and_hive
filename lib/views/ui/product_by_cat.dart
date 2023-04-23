@@ -3,7 +3,8 @@ import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:shopping_app_with_provider_and_hive/models/sneaker_model.dart';
 import 'package:shopping_app_with_provider_and_hive/services/helper.dart';
 import 'package:shopping_app_with_provider_and_hive/views/shared/app_style.dart';
-import 'package:shopping_app_with_provider_and_hive/views/shared/customer_spacer.dart';
+import 'package:shopping_app_with_provider_and_hive/views/shared/category_btn.dart';
+import 'package:shopping_app_with_provider_and_hive/views/shared/custom_spacer.dart';
 import 'package:shopping_app_with_provider_and_hive/views/shared/latest_shoes.dart';
 import 'package:shopping_app_with_provider_and_hive/views/shared/product_card.dart';
 import 'package:shopping_app_with_provider_and_hive/views/shared/stagger_tile.dart';
@@ -46,6 +47,13 @@ class _ProductByCatState extends State<ProductByCat>
     getFemale();
   }
 
+  List<String> brand = [
+    "assets/images/adidas.png",
+    "assets/images/gucci.png",
+    "assets/images/jordan.png",
+    "assets/images/nike.png",
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,9 +83,10 @@ class _ProductByCatState extends State<ProductByCat>
                         ),
                         GestureDetector(
                           onTap: () {
-                            Navigator.pop(context);
+                            filter();
                           },
-                          child: Icon(FontAwesome.sliders, color: Colors.white),
+                          child: const Icon(FontAwesome.sliders,
+                              color: Colors.white),
                         ),
                       ],
                     ),
@@ -112,11 +121,14 @@ class _ProductByCatState extends State<ProductByCat>
                   right: 12),
               child: ClipRRect(
                 borderRadius: const BorderRadius.all(Radius.circular(16)),
-                child: TabBarView(controller: _tabController, children: [
-                  latestShoes(male: _male),
-                  latestShoes(male: _female),
-                  latestShoes(male: _kids),
-                ]),
+                child: TabBarView(
+                  controller: _tabController,
+                  children: [
+                    latestShoes(male: _male),
+                    latestShoes(male: _female),
+                    latestShoes(male: _kids),
+                  ],
+                ),
               ),
             ),
           ],
@@ -126,6 +138,7 @@ class _ProductByCatState extends State<ProductByCat>
   }
 
   Future<dynamic> filter() {
+    double _value = 100;
     return showModalBottomSheet(
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
@@ -133,7 +146,7 @@ class _ProductByCatState extends State<ProductByCat>
       context: context,
       builder: (context) => Container(
         height: MediaQuery.of(context).size.height * 0.82,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(25),
@@ -142,27 +155,88 @@ class _ProductByCatState extends State<ProductByCat>
         ),
         child: Column(
           children: [
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Container(
               height: 5,
               width: 40,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(10)),
                 color: Colors.black38,
               ),
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.7,
+              // height: MediaQuery.of(context).size.height * 0.7,
               child: Column(
                 children: [
-                  const CustomerSpacer(),
+                  const CustomSpacer(),
                   Text("Filter",
                       style: appStyle(40, Colors.black, FontWeight.bold)),
-                  const CustomerSpacer(),
+                  const CustomSpacer(),
                   Text("Gender",
                       style: appStyle(20, Colors.black, FontWeight.bold)),
                   const SizedBox(height: 20),
-
+                  Row(
+                    children: [
+                      CategoryBtn(buttonClr: Colors.black, label: "Man"),
+                      CategoryBtn(buttonClr: Colors.grey, label: "Women"),
+                      CategoryBtn(buttonClr: Colors.grey, label: "Kids"),
+                    ],
+                  ),
+                  const CustomSpacer(),
+                  Text(
+                    "Category",
+                    style: appStyle(20, Colors.black, FontWeight.w600),
+                  ),
+                  const SizedBox(height: 20),
+                  Row(
+                    children: [
+                      CategoryBtn(buttonClr: Colors.grey, label: "Shoes"),
+                      CategoryBtn(buttonClr: Colors.black, label: "Apparels"),
+                      CategoryBtn(buttonClr: Colors.grey, label: "Accessories"),
+                    ],
+                  ),
+                  const CustomSpacer(),
+                  Text(
+                    "Price",
+                    style: appStyle(20, Colors.black, FontWeight.bold),
+                  ),
+                  const CustomSpacer(),
+                  Slider(
+                      value: _value,
+                      activeColor: Colors.black,
+                      inactiveColor: Colors.grey,
+                      thumbColor: Colors.grey,
+                      max: 500,
+                      divisions: 50,
+                      label: _value.toString(),
+                      secondaryTrackValue: 200,
+                      onChanged: (double value) {}),
+                  const CustomSpacer(),
+                  Text(
+                    "Brand",
+                    style: appStyle(20, Colors.black, FontWeight.bold),
+                  ),
+                  const SizedBox(height: 20),
+                  Container(
+                    padding: EdgeInsets.all(8),
+                    height: 80,
+                    child: ListView.builder(
+                        itemCount: brand.length,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: EdgeInsets.all(8),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.grey.shade200,
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(12))),
+                              child: Image.asset(brand[index],
+                                  height: 60, width: 80, color: Colors.black),
+                            ),
+                          );
+                        }),
+                  ),
                 ],
               ),
             ),

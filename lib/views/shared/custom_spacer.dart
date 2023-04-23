@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CustomerSpacer extends StatelessWidget {
-  const CustomerSpacer({Key? key}) : super(key: key);
+class CustomSpacer extends StatelessWidget {
+  const CustomSpacer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
