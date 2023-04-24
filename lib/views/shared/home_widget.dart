@@ -4,15 +4,18 @@ import 'package:shopping_app_with_provider_and_hive/models/sneaker_model.dart';
 import 'package:shopping_app_with_provider_and_hive/views/shared/app_style.dart';
 import 'package:shopping_app_with_provider_and_hive/views/shared/new_shoes.dart';
 import 'package:shopping_app_with_provider_and_hive/views/shared/product_card.dart';
-
+import 'package:shopping_app_with_provider_and_hive/views/ui/product_by_cat.dart';
+import 'package:shopping_app_with_provider_and_hive/views/ui/product_page.dart';
 
 class HomeWidget extends StatelessWidget {
   const HomeWidget({
     super.key,
     required Future<List<Sneakers>> male,
+    required this.tabIndex,
   }) : _male = male;
 
   final Future<List<Sneakers>> _male;
+  final int tabIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -23,23 +26,32 @@ class HomeWidget extends StatelessWidget {
           child: FutureBuilder<List<Sneakers>>(
             future: _male,
             builder: (context, snapshot) {
-              if(snapshot.connectionState == ConnectionState.waiting){
-                return CircularProgressIndicator();
-              }else if (snapshot.hasError){
-                return Text("Error ${snapshot.error}" );
-              }else{
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const CircularProgressIndicator();
+              } else if (snapshot.hasError) {
+                return Text("Error ${snapshot.error}");
+              } else {
                 final male = snapshot.data;
                 return ListView.builder(
                     itemCount: male!.length,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
                       final shoe = snapshot.data![index];
-                      return  ProductCard(
-                        price: "\$${shoe.price}",
-                        category: shoe.category,
-                        id: shoe.id,
-                        name: shoe.name,
-                        image: shoe.imageUrl[0],
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ProductPage(
+                                      id: shoe.id, category: shoe.category)));
+                        },
+                        child: ProductCard(
+                          price: "\$${shoe.price}",
+                          category: shoe.category,
+                          id: shoe.id,
+                          name: shoe.name,
+                          image: shoe.imageUrl[0],
+                        ),
                       );
                     });
               }
@@ -49,27 +61,32 @@ class HomeWidget extends StatelessWidget {
         Column(
           children: [
             Padding(
-              padding:
-              const EdgeInsets.fromLTRB(12, 20, 12, 20),
+              padding: const EdgeInsets.fromLTRB(12, 20, 12, 20),
               child: Row(
-                mainAxisAlignment:
-                MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                     "Latest Shoes",
-                    style: appStyle(
-                        24, Colors.black, FontWeight.bold),
+                    style: appStyle(24, Colors.black, FontWeight.bold),
                   ),
-                  Row(
-                    children: [
-                      Text(
-                        "Show All",
-                        style: appStyle(
-                            22, Colors.black, FontWeight.w500),
-                      ),
-                      const Icon(AntDesign.caretright,
-                          size: 20),
-                    ],
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ProductByCat(
+                                    tabIndex: tabIndex,
+                                  )));
+                    },
+                    child: Row(
+                      children: [
+                        Text(
+                          "Show All",
+                          style: appStyle(22, Colors.black, FontWeight.w500),
+                        ),
+                        const Icon(AntDesign.caretright, size: 20),
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -81,18 +98,18 @@ class HomeWidget extends StatelessWidget {
           child: FutureBuilder<List<Sneakers>>(
             future: _male,
             builder: (context, snapshot) {
-              if(snapshot.connectionState == ConnectionState.waiting){
+              if (snapshot.connectionState == ConnectionState.waiting) {
                 return CircularProgressIndicator();
-              }else if (snapshot.hasError){
-                return Text("Error ${snapshot.error}" );
-              }else{
+              } else if (snapshot.hasError) {
+                return Text("Error ${snapshot.error}");
+              } else {
                 final male = snapshot.data;
                 return ListView.builder(
                     itemCount: male!.length,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
                       final shoe = snapshot.data![index];
-                      return  Padding(
+                      return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: NewShoes(imageUrl: shoe.imageUrl[1]),
                       );

@@ -12,7 +12,9 @@ import 'package:staggered_grid_view_flutter/widgets/staggered_grid_view.dart';
 import 'package:staggered_grid_view_flutter/widgets/staggered_tile.dart';
 
 class ProductByCat extends StatefulWidget {
-  const ProductByCat({Key? key}) : super(key: key);
+  const ProductByCat({Key? key, required this.tabIndex}) : super(key: key);
+
+  final int tabIndex ;
 
   @override
   State<ProductByCat> createState() => _ProductByCatState();
@@ -145,7 +147,7 @@ class _ProductByCatState extends State<ProductByCat>
       barrierColor: Colors.white54,
       context: context,
       builder: (context) => Container(
-        height: MediaQuery.of(context).size.height * 0.82,
+        height: MediaQuery.of(context).size.height * 0.81,
         decoration: const BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(
