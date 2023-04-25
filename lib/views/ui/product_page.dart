@@ -7,6 +7,7 @@ import 'package:shopping_app_with_provider_and_hive/controllers/product_provider
 import 'package:shopping_app_with_provider_and_hive/models/sneaker_model.dart';
 import 'package:shopping_app_with_provider_and_hive/services/helper.dart';
 import 'package:shopping_app_with_provider_and_hive/views/shared/app_style.dart';
+import 'package:shopping_app_with_provider_and_hive/views/shared/checkout_btn.dart';
 
 class ProductPage extends StatefulWidget {
   const ProductPage({Key? key, required this.id, required this.category})
@@ -173,14 +174,14 @@ class _ProductPageState extends State<ProductPage> {
                                       children: [
                                         Text(
                                           sneaker.name,
-                                          style: appStyle(40, Colors.black,
+                                          style: appStyle(36, Colors.black,
                                               FontWeight.bold),
                                         ),
                                         Row(
                                           children: [
                                             Text(
                                               sneaker.category,
-                                              style: appStyle(20, Colors.grey,
+                                              style: appStyle(18, Colors.grey,
                                                   FontWeight.w500),
                                             ),
                                             const SizedBox(
@@ -192,7 +193,7 @@ class _ProductPageState extends State<ProductPage> {
                                               direction: Axis.horizontal,
                                               allowHalfRating: true,
                                               itemCount: 5,
-                                              itemSize: 22,
+                                              itemSize: 19,
                                               itemPadding:
                                                   const EdgeInsets.symmetric(
                                                       horizontal: 1),
@@ -204,7 +205,7 @@ class _ProductPageState extends State<ProductPage> {
                                             ),
                                           ],
                                         ),
-                                        const SizedBox(height: 20),
+                                        const SizedBox(height: 15),
                                         Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
@@ -237,7 +238,7 @@ class _ProductPageState extends State<ProductPage> {
                                             ),
                                           ],
                                         ),
-                                        const SizedBox(height: 20),
+                                        const SizedBox(height: 15),
                                         Column(
                                           children: [
                                             Row(
@@ -291,10 +292,16 @@ class _ProductPageState extends State<ProductPage> {
                                                                 style:
                                                                     BorderStyle
                                                                         .solid)),
-                                                        disabledColor: Colors.white,
-                                                        label: Text(sizes['size'],
-                                                          style: appStyle(18, sizes['isSelected']? Colors.white
-                                                                  : Colors.black,
+                                                        disabledColor:
+                                                            Colors.white,
+                                                        label: Text(
+                                                          sizes['size'],
+                                                          style: appStyle(
+                                                              15,
+                                                              sizes['isSelected']
+                                                                  ? Colors.white
+                                                                  : Colors
+                                                                      .black,
                                                               FontWeight.w500),
                                                         ),
                                                         selectedColor:
@@ -315,6 +322,44 @@ class _ProductPageState extends State<ProductPage> {
                                                   }),
                                             ),
                                           ],
+                                        ),
+                                        const SizedBox(height: 5),
+                                        const Divider(
+                                          indent: 10,
+                                          endIndent: 10,
+                                          color: Colors.black,
+                                        ),
+                                        const SizedBox(height: 5),
+                                        SizedBox(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.9,
+                                          child: Text(
+                                            sneaker.title,
+                                            style: appStyle(22, Colors.black,
+                                                FontWeight.w700),
+                                          ),
+                                        ),
+                                        const SizedBox(height: 10),
+                                        Text(
+                                          sneaker.description,
+                                          textAlign: TextAlign.justify,
+                                          maxLines: 4,
+                                          style: appStyle(13, Colors.black,
+                                              FontWeight.normal),
+                                        ),
+                                        // const SizedBox(height: 10),
+                                         Align(
+                                          alignment: Alignment.bottomCenter,
+                                          child: Padding(
+                                            padding: EdgeInsets.only(top: 12),
+                                            child: CheckoutButton(
+                                                onTap: (){
+
+                                                },
+                                                label: 'Add to Cart'),
+                                          ),
                                         ),
                                       ],
                                     ),
