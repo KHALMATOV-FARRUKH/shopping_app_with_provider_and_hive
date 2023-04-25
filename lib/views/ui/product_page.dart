@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:shopping_app_with_provider_and_hive/controllers/product_provider.dart';
 import 'package:shopping_app_with_provider_and_hive/models/sneaker_model.dart';
@@ -23,6 +24,8 @@ class ProductPage extends StatefulWidget {
 class _ProductPageState extends State<ProductPage> {
   final PageController pageController = PageController();
 
+  final _cartBox = Hive.box('cart_box');
+
   late Future<Sneakers> _sneaker;
 
   void getShoes() {
@@ -33,6 +36,11 @@ class _ProductPageState extends State<ProductPage> {
     } else {
       _sneaker = Helper().getKidsSneakersById(widget.id);
     }
+  }
+
+
+  Future<void> _createCart(Map<dynamic, dynamic> newCart) async {
+    await _cartBox.add(newCart);
   }
 
   @override
@@ -313,9 +321,13 @@ class _ProductPageState extends State<ProductPage> {
                                                         selected:
                                                             sizes['isSelected'],
                                                         onSelected: (newState) {
-                                                          productNotifier
-                                                              .toggleCheck(
-                                                                  index);
+                                                          if(productNotifier.sizes.contains(sizes['size'])){
+                                                            productNotifier.sizes.remove(sizes['size']);
+                                                          }else{
+                                                            productNotifier.sizes.add(sizes['size']);
+                                                          }
+                                                         // print(productNotifier.sizes);
+                                                          productNotifier.toggleCheck(index);
                                                         },
                                                       ),
                                                     );
@@ -350,13 +362,23 @@ class _ProductPageState extends State<ProductPage> {
                                               FontWeight.normal),
                                         ),
                                         // const SizedBox(height: 10),
-                                         Align(
+                                        Align(
                                           alignment: Alignment.bottomCenter,
                                           child: Padding(
-                                            padding: EdgeInsets.only(top: 12),
+                                            padding: const EdgeInsets.only(top: 12),
                                             child: CheckoutButton(
-                                                onTap: (){
-
+                                                onTap: () async {
+                                                  _createCart({
+                                                    "id": sneaker.id,
+                                                    "name": sneaker.name,
+                                                    "category": sneaker.category,
+                                                    "sizes": productNotifier.sizes,
+                                                    "imageUrl": sneaker.imageUrl[0],
+                                                    "price": sneaker.price,
+                                                    "qty": 1
+                                                  });
+                                                  productNotifier.sizes.clear();
+                                                  Navigator.pop(context);
                                                 },
                                                 label: 'Add to Cart'),
                                           ),

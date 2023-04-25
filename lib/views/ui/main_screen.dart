@@ -14,12 +14,12 @@ import 'package:shopping_app_with_provider_and_hive/views/ui/search_page.dart';
 class MainScreen extends StatelessWidget {
   MainScreen({Key? key}) : super(key: key);
 
-  List<Widget> pageList = const [
-    HomePage(),
-    SearchPage(),
-    HomePage(),
+  List<Widget> pageList =  [
+    const HomePage(),
+    const SearchPage(),
+    const HomePage(),
     CartPage(),
-    ProfilePage()
+    const ProfilePage()
   ];
 
   @override
@@ -28,6 +28,7 @@ class MainScreen extends StatelessWidget {
       builder: (context, mainScreenNotifier, child) {
         return Scaffold(
           backgroundColor: const Color(0xFFe2e2e2),
+
           body: pageList[mainScreenNotifier.pageIndex],
           bottomNavigationBar: const BottomNavBar(),
         );
