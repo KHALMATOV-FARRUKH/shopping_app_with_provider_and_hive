@@ -23,7 +23,7 @@ class CartPage extends StatelessWidget {
         "imageUrl": item['imageUrl'],
         "price": item['price'],
         "qty": item['qty'],
-        "sizes": item['sizes']
+        "sizes": item['sizes'],
       };
     }).toList();
 
@@ -127,23 +127,19 @@ class CartPage extends StatelessWidget {
                                                     Colors.black,
                                                     FontWeight.bold),
                                               ),
-                                              const SizedBox(
-                                                height: 5,
-                                              ),
+                                              // const SizedBox(height: 5),
                                               Text(
                                                 data['category'],
-                                                style: appStyle(14, Colors.grey,
+                                                style: appStyle(12, Colors.grey,
                                                     FontWeight.w600),
                                               ),
-                                              const SizedBox(
-                                                height: 5,
-                                              ),
+                                              // const SizedBox(height: 5),
                                               Row(
                                                 children: [
                                                   Text(
                                                     data['price'],
                                                     style: appStyle(
-                                                        18,
+                                                        17,
                                                         Colors.black,
                                                         FontWeight.w600),
                                                   ),
@@ -161,7 +157,7 @@ class CartPage extends StatelessWidget {
                                                     width: 15,
                                                   ),
                                                   Text(
-                                                    data['sizes'],
+                                                    data['sizes'].toString(),
                                                     style: appStyle(
                                                         18,
                                                         Colors.grey,
@@ -171,7 +167,7 @@ class CartPage extends StatelessWidget {
                                               ),
                                             ],
                                           ),
-                                        )
+                                        ),
                                       ],
                                     ),
                                     Row(
