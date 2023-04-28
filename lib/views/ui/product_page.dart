@@ -98,7 +98,7 @@ class _ProductPageState extends State<ProductPage> {
                         background: Stack(
                           children: [
                             SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.5,
+                              height: MediaQuery.of(context).size.height * 0.49,
                               width: MediaQuery.of(context).size.width,
                               child: PageView.builder(
                                 scrollDirection: Axis.horizontal,
@@ -113,7 +113,7 @@ class _ProductPageState extends State<ProductPage> {
                                       Container(
                                         height:
                                             MediaQuery.of(context).size.height *
-                                                0.39,
+                                                0.37,
                                         width:
                                             MediaQuery.of(context).size.width,
                                         color: Colors.grey.shade300,
@@ -125,7 +125,7 @@ class _ProductPageState extends State<ProductPage> {
                                           top: MediaQuery.of(context)
                                                   .size
                                                   .height *
-                                              0.1,
+                                              0.08,
                                           right: 17,
                                           child: const Icon(AntDesign.hearto,
                                               color: Colors.grey)),
@@ -135,7 +135,7 @@ class _ProductPageState extends State<ProductPage> {
                                         left: 0,
                                         height:
                                             MediaQuery.of(context).size.height *
-                                                0.3,
+                                                0.35,
                                         child: Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
@@ -163,7 +163,7 @@ class _ProductPageState extends State<ProductPage> {
                               ),
                             ),
                             Positioned(
-                              bottom: 30,
+                              bottom: 15,
                               child: ClipRRect(
                                 borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(30),
@@ -171,29 +171,29 @@ class _ProductPageState extends State<ProductPage> {
                                 ),
                                 child: Container(
                                   height: MediaQuery.of(context).size.height *
-                                      0.645,
+                                      0.673,
                                   width: MediaQuery.of(context).size.width,
                                   color: Colors.white,
                                   child: Padding(
-                                    padding: EdgeInsets.all(12),
+                                    padding: const EdgeInsets.all(12),
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           sneaker.name,
-                                          style: appStyle(36, Colors.black,
+                                          style: appStyle(34, Colors.black,
                                               FontWeight.bold),
                                         ),
                                         Row(
                                           children: [
                                             Text(
                                               sneaker.category,
-                                              style: appStyle(18, Colors.grey,
+                                              style: appStyle(16, Colors.grey,
                                                   FontWeight.w500),
                                             ),
                                             const SizedBox(
-                                              width: 20,
+                                              width: 18,
                                             ),
                                             RatingBar.builder(
                                               initialRating: 4,
@@ -213,14 +213,14 @@ class _ProductPageState extends State<ProductPage> {
                                             ),
                                           ],
                                         ),
-                                        const SizedBox(height: 15),
+                                        const SizedBox(height: 10),
                                         Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           children: [
                                             Text(
                                               "\$${sneaker.price}",
-                                              style: appStyle(26, Colors.black,
+                                              style: appStyle(24, Colors.black,
                                                   FontWeight.w600),
                                             ),
                                             Row(
@@ -228,7 +228,7 @@ class _ProductPageState extends State<ProductPage> {
                                                 Text(
                                                   "Colors",
                                                   style: appStyle(
-                                                      18,
+                                                      16,
                                                       Colors.black,
                                                       FontWeight.w500),
                                                 ),
@@ -246,7 +246,7 @@ class _ProductPageState extends State<ProductPage> {
                                             ),
                                           ],
                                         ),
-                                        const SizedBox(height: 15),
+                                        const SizedBox(height: 10),
                                         Column(
                                           children: [
                                             Row(
@@ -254,7 +254,7 @@ class _ProductPageState extends State<ProductPage> {
                                                 Text(
                                                   "Select sizes",
                                                   style: appStyle(
-                                                      20,
+                                                      18,
                                                       Colors.black,
                                                       FontWeight.w600),
                                                 ),
@@ -262,13 +262,13 @@ class _ProductPageState extends State<ProductPage> {
                                                 Text(
                                                   "View size guide",
                                                   style: appStyle(
-                                                      20,
+                                                      18,
                                                       Colors.grey,
                                                       FontWeight.w600),
                                                 ),
                                               ],
                                             ),
-                                            const SizedBox(height: 10),
+                                            const SizedBox(height: 8),
                                             SizedBox(
                                               height: 40,
                                               child: ListView.builder(
@@ -335,13 +335,13 @@ class _ProductPageState extends State<ProductPage> {
                                             ),
                                           ],
                                         ),
-                                        const SizedBox(height: 5),
+                                        const SizedBox(height: 2),
                                         const Divider(
                                           indent: 10,
                                           endIndent: 10,
                                           color: Colors.black,
                                         ),
-                                        const SizedBox(height: 5),
+                                        const SizedBox(height: 3),
                                         SizedBox(
                                           width: MediaQuery.of(context)
                                                   .size
@@ -353,11 +353,11 @@ class _ProductPageState extends State<ProductPage> {
                                                 FontWeight.w700),
                                           ),
                                         ),
-                                        const SizedBox(height: 10),
+                                        const SizedBox(height: 5),
                                         Text(
                                           sneaker.description,
                                           textAlign: TextAlign.justify,
-                                          maxLines: 4,
+                                          maxLines: 5,
                                           style: appStyle(13, Colors.black,
                                               FontWeight.normal),
                                         ),

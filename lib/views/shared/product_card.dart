@@ -52,7 +52,7 @@ class _ProductCardState extends State<ProductCard> {
               Stack(
                 children: [
                   Container(
-                    height: MediaQuery.of(context).size.height * 0.22,
+                    height: MediaQuery.of(context).size.height * 0.20,
                     decoration: BoxDecoration(
                       image: DecorationImage(image: NetworkImage(widget.image)),
                     ),
